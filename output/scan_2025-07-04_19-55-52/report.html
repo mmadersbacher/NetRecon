@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Netzwerk Scan Report</title>
+    <link rel="stylesheet" href="static/style.css">
+    <script src="static/chart.js"></script>
+    <script src="static/d3.v7.min.js"></script>
+</head>
+<body>
+    <h1>Netzwerk Scan Report</h1>
+
+    <section>
+        <h2>Geräteübersicht</h2>
+        <table><thead><tr><th>IP</th><th>MAC</th><th>Vendor</th><th>Ports</th></tr></thead><tbody><tr><td>192.168.8.1</td><td>62:96:ad:e4:79:00</td><td>Unbekannt</td><td>53 → <br>80 → HTTP/1.1 405 
+Content-Length: 0<br>443 → </td></tr><tr><td>192.168.8.100</td><td>64:1c:b0:af:65:e2</td><td>Samsung Electronics Co.</td><td>8080 → </td></tr><tr><td>192.168.8.103</td><td>ca:9f:92:6e:69:d5</td><td>Unbekannt</td><td></td></tr><tr><td>192.168.8.133</td><td>84:69:93:c3:8e:23</td><td>HP Inc.</td><td>80 → <br>443 → <br>8080 → </td></tr></tbody></table>
+    </section>
+
+    <section>
+        <h2>Offene Ports – Statistik</h2>
+        <canvas id="portChart" width="600" height="300"></canvas>
+    </section>
+
+    <section>
+        <h2>Netzwerkgraph</h2>
+        <div id="networkGraph" style="width: 100%; height: 500px;"></div>
+    </section>
+
+    <!-- Daten-Einbettung als JSON-Objekte in <script>-Tag -->
+    <script id="graph-data" type="application/json">
+        {"nodes": [{"id": "192.168.8.1", "label": "192.168.8.1\nUnbekannt", "mac": "62:96:ad:e4:79:00"}, {"id": "192.168.8.1:53", "label": "Port 53", "service": ""}, {"id": "192.168.8.1:80", "label": "Port 80", "service": "HTTP/1.1 405 \r\nContent-Length: 0"}, {"id": "192.168.8.1:443", "label": "Port 443", "service": ""}, {"id": "192.168.8.100", "label": "192.168.8.100\nSamsung Electronics Co.", "mac": "64:1c:b0:af:65:e2"}, {"id": "192.168.8.100:8080", "label": "Port 8080", "service": ""}, {"id": "192.168.8.103", "label": "192.168.8.103\nUnbekannt", "mac": "ca:9f:92:6e:69:d5"}, {"id": "192.168.8.133", "label": "192.168.8.133\nHP Inc.", "mac": "84:69:93:c3:8e:23"}, {"id": "192.168.8.133:80", "label": "Port 80", "service": ""}, {"id": "192.168.8.133:443", "label": "Port 443", "service": ""}, {"id": "192.168.8.133:8080", "label": "Port 8080", "service": ""}], "links": [{"source": "192.168.8.1", "target": "192.168.8.1:53"}, {"source": "192.168.8.1", "target": "192.168.8.1:80"}, {"source": "192.168.8.1", "target": "192.168.8.1:443"}, {"source": "192.168.8.100", "target": "192.168.8.100:8080"}, {"source": "192.168.8.133", "target": "192.168.8.133:80"}, {"source": "192.168.8.133", "target": "192.168.8.133:443"}, {"source": "192.168.8.133", "target": "192.168.8.133:8080"}]}
+    </script>
+    <script id="port-data" type="application/json">
+        {"53": 1, "80": 2, "443": 2, "8080": 2}
+    </script>
+
+    <script>
+        const graphData = JSON.parse(document.getElementById("graph-data").textContent);
+        const portStats = JSON.parse(document.getElementById("port-data").textContent);
+
+        const ctx = document.getElementById('portChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: Object.keys(portStats),
+                datasets: [{
+                    label: 'Anzahl Geräte',
+                    data: Object.values(portStats),
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { display: false },
+                    title: { display: true, text: 'Portverteilung' }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: { display: true, text: 'Anzahl' }
+                    },
+                    x: {
+                        title: { display: true, text: 'Port' }
+                    }
+                }
+            }
+        });
+
+        const width = document.getElementById("networkGraph").clientWidth;
+        const height = 500;
+
+        const svg = d3.select("#networkGraph")
+            .append("svg")
+            .attr("width", width)
+            .attr("height", height);
+
+        const simulation = d3.forceSimulation(graphData.nodes)
+            .force("link", d3.forceLink(graphData.links).id(d => d.id).distance(150))
+            .force("charge", d3.forceManyBody().strength(-300))
+            .force("center", d3.forceCenter(width / 2, height / 2));
+
+        const link = svg.append("g")
+            .selectAll("line")
+            .data(graphData.links)
+            .enter().append("line")
+            .attr("stroke", "#999");
+
+        const node = svg.append("g")
+            .selectAll("circle")
+            .data(graphData.nodes)
+            .enter().append("circle")
+            .attr("r", 10)
+            .attr("fill", "#1f77b4")
+            .call(d3.drag()
+                .on("start", dragStart)
+                .on("drag", dragging)
+                .on("end", dragEnd));
+
+        node.append("title").text(d => d.id);
+
+        simulation.on("tick", () => {
+            link.attr("x1", d => d.source.x)
+                .attr("y1", d => d.source.y)
+                .attr("x2", d => d.target.x)
+                .attr("y2", d => d.target.y);
+
+            node.attr("cx", d => d.x).attr("cy", d => d.y);
+        });
+
+        function dragStart(event, d) {
+            if (!event.active) simulation.alphaTarget(0.3).restart();
+            d.fx = d.x;
+            d.fy = d.y;
+        }
+
+        function dragging(event, d) {
+            d.fx = event.x;
+            d.fy = event.y;
+        }
+
+        function dragEnd(event, d) {
+            if (!event.active) simulation.alphaTarget(0);
+            d.fx = null;
+            d.fy = null;
+        }
+    </script>
+</body>
+</html>

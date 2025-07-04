@@ -1,0 +1,48 @@
+[
+  {
+    "ip": "192.168.8.1",
+    "mac": "62:96:ad:e4:79:00",
+    "vendor": "Unbekannt",
+    "ports": [
+      {
+        "port": 53,
+        "banner": "Keine Antwort"
+      },
+      {
+        "port": 80,
+        "banner": "Keine Antwort"
+      },
+      {
+        "port": 443,
+        "banner": "Keine Antwort"
+      }
+    ]
+  },
+  {
+    "ip": "192.168.8.100",
+    "mac": "64:1c:b0:af:65:e2",
+    "vendor": "Samsung Electronics Co.",
+    "ports": []
+  },
+  {
+    "ip": "192.168.8.103",
+    "mac": "ca:9f:92:6e:69:d5",
+    "vendor": "Unbekannt",
+    "ports": []
+  },
+  {
+    "ip": "192.168.8.133",
+    "mac": "84:69:93:c3:8e:23",
+    "vendor": "HP Inc.",
+    "ports": [
+      {
+        "port": 80,
+        "banner": "Keine Antwort"
+      },
+      {
+        "port": 443,
+        "banner": "Keine Antwort"
+      }
+    ]
+  }
+]

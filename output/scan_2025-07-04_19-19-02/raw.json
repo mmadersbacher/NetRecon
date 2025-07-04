@@ -1,0 +1,206 @@
+[
+  {
+    "ip": "192.168.8.1",
+    "mac": "62:96:ad:e4:79:00",
+    "vendor": "Unbekannt",
+    "ports": [
+      {
+        "port": 21,
+        "banner": "Keine Antwort"
+      },
+      {
+        "port": 22,
+        "banner": "Keine Antwort"
+      },
+      {
+        "port": 23,
+        "banner": "Keine Antwort"
+      },
+      {
+        "port": 25,
+        "banner": "Keine Antwort"
+      },
+      {
+        "port": 53,
+        "banner": "Timeout"
+      },
+      {
+        "port": 80,
+        "banner": "Timeout"
+      },
+      {
+        "port": 110,
+        "banner": "Keine Antwort"
+      },
+      {
+        "port": 139,
+        "banner": "Keine Antwort"
+      },
+      {
+        "port": 143,
+        "banner": "Keine Antwort"
+      },
+      {
+        "port": 443,
+        "banner": "Timeout"
+      },
+      {
+        "port": 445,
+        "banner": "Keine Antwort"
+      },
+      {
+        "port": 3306,
+        "banner": "Keine Antwort"
+      },
+      {
+        "port": 3389,
+        "banner": "Keine Antwort"
+      },
+      {
+        "port": 8080,
+        "banner": "Keine Antwort"
+      },
+      {
+        "port": 8443,
+        "banner": "Keine Antwort"
+      }
+    ],
+    "os": "Linux / Unix"
+  },
+  {
+    "ip": "192.168.8.100",
+    "mac": "64:1c:b0:af:65:e2",
+    "vendor": "Samsung Electronics Co.",
+    "ports": [
+      {
+        "port": 21,
+        "banner": "Keine Antwort"
+      },
+      {
+        "port": 22,
+        "banner": "Keine Antwort"
+      },
+      {
+        "port": 23,
+        "banner": "Keine Antwort"
+      },
+      {
+        "port": 25,
+        "banner": "Keine Antwort"
+      },
+      {
+        "port": 53,
+        "banner": "Keine Antwort"
+      },
+      {
+        "port": 80,
+        "banner": "Keine Antwort"
+      },
+      {
+        "port": 110,
+        "banner": "Keine Antwort"
+      },
+      {
+        "port": 139,
+        "banner": "Keine Antwort"
+      },
+      {
+        "port": 143,
+        "banner": "Keine Antwort"
+      },
+      {
+        "port": 443,
+        "banner": "Keine Antwort"
+      },
+      {
+        "port": 445,
+        "banner": "Keine Antwort"
+      },
+      {
+        "port": 3306,
+        "banner": "Keine Antwort"
+      },
+      {
+        "port": 3389,
+        "banner": "Keine Antwort"
+      },
+      {
+        "port": 8080,
+        "banner": "Timeout"
+      },
+      {
+        "port": 8443,
+        "banner": "Keine Antwort"
+      }
+    ],
+    "os": "Linux / Unix"
+  },
+  {
+    "ip": "192.168.8.103",
+    "mac": "ca:9f:92:6e:69:d5",
+    "vendor": "Unbekannt",
+    "ports": [
+      {
+        "port": 21,
+        "banner": "Keine Antwort"
+      },
+      {
+        "port": 22,
+        "banner": "Keine Antwort"
+      },
+      {
+        "port": 23,
+        "banner": "Keine Antwort"
+      },
+      {
+        "port": 25,
+        "banner": "Keine Antwort"
+      },
+      {
+        "port": 53,
+        "banner": "Keine Antwort"
+      },
+      {
+        "port": 80,
+        "banner": "Keine Antwort"
+      },
+      {
+        "port": 110,
+        "banner": "Keine Antwort"
+      },
+      {
+        "port": 139,
+        "banner": "Keine Antwort"
+      },
+      {
+        "port": 143,
+        "banner": "Keine Antwort"
+      },
+      {
+        "port": 443,
+        "banner": "Keine Antwort"
+      },
+      {
+        "port": 445,
+        "banner": "Keine Antwort"
+      },
+      {
+        "port": 3306,
+        "banner": "Keine Antwort"
+      },
+      {
+        "port": 3389,
+        "banner": "Keine Antwort"
+      },
+      {
+        "port": 8080,
+        "banner": "Keine Antwort"
+      },
+      {
+        "port": 8443,
+        "banner": "Keine Antwort"
+      }
+    ],
+    "os": "Linux / Unix"
+  }
+]
