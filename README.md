@@ -1,6 +1,6 @@
 # NetRecon – Professionelles Netzwerk-Recon-Tool
 
-## Projektübersi
+## Projektübersich
 
 NetRecon ist ein Python-basiertes Netzwerk-Scanning- und Reconnaissance-Tool, das eigenständig das lokale IP-Subnetz erkennt und aktiv nach Geräten scannt.  
 Es liefert detaillierte Informationen über Hosts, offene Ports, Betriebssysteme und Hersteller. Optional kann ein anderes Subnetz angegeben werden, um gezielt zu scannen.  
