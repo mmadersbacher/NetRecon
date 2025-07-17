@@ -1,4 +1,4 @@
-# NetRecon – Professionelles Netzwerk-Recon-Tool
+# NetRecon – Professionelles Netzwerk-Recon-Too
 
 ## Projektübersicht
 
